@@ -3,9 +3,12 @@ import { Router } from 'preact-router';
 
 import Header from './header';
 
+import style from './style';
+
 // Code-splitting is automated for routes
-import Home from '../routes/home';
-import Profile from '../routes/profile';
+import Flights from '../routes/flights';
+import Itineraries from '../routes/itineraries';
+import Orders from '../routes/orders';
 
 export default class App extends Component {
 	
@@ -21,11 +24,13 @@ export default class App extends Component {
 		return (
 			<div id="app">
 				<Header />
-				<Router onChange={this.handleRoute}>
-					<Home path="/" />
-					<Profile path="/profile/" user="me" />
-					<Profile path="/profile/:user" />
-				</Router>
+				<div id="content">
+					<Router onChange={this.handleRoute}>
+						<Itineraries path="/" />
+						<Flights path="/flights" />
+						<Orders path="/orders" />
+					</Router>
+				</div>
 			</div>
 		);
 	}

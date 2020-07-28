@@ -1,0 +1,9 @@
+table {
+	border-collapse: collapse;
+}
+th, td {
+	padding: 1vw;
+}
+tr:nth-child(even) {
+	color: Navy;
+}
