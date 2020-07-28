@@ -22,7 +22,14 @@ export default class App extends Component {
 
 	state = {
 		orders: [],
-		flights: []
+		flights: [
+			{"departure":"YUL", "arrival": "YYZ", "day": 1},
+			{"departure":"YUL", "arrival": "YYC", "day": 1},
+			{"departure":"YUL", "arrival": "YVR", "day": 1},
+			{"departure":"YUL", "arrival": "YYZ", "day": 2},
+			{"departure":"YUL", "arrival": "YYC", "day": 2},
+			{"departure":"YUL", "arrival": "YVR", "day": 2}
+		]
 	}
 
 	render() {
@@ -31,8 +38,8 @@ export default class App extends Component {
 				<Header />
 				<div id="content">
 					<Router onChange={this.handleRoute}>
-						<Itineraries path="/" />
-						<Flights path="/flights" />
+						<Itineraries path="/" state={this.state} />
+						<Flights path="/flights" flights={this.state.flights} />
 						<Orders path="/orders" orders={this.state.orders} saver={(orders) => this.setState({orders: orders})} />
 					</Router>
 				</div>

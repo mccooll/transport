@@ -30,7 +30,7 @@ export default class Itineraries extends Component {
 					</tr>
 				</table>
 				<p>
-					You need to upload flights and orders.
+					You need to upload orders.
 				</p>
 			</div>
 		);

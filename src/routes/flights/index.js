@@ -13,23 +13,15 @@ export default class Flights extends Component {
 						<th>To</th>
 						<th>Day</th>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>YUL</td>
-						<td>YYZ</td>
-						<td>1</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>YUL</td>
-						<td>YYZ</td>
-						<td>1</td>
-					</tr>
+					{this.props.flights.map((flight, i) => (
+						<tr>
+							<td>{i}</td>
+							<td>{flight.departure}</td>
+							<td>{flight.arrival}</td>
+							<td>{flight.day}</td>
+						</tr>
+					))}
 				</table>
-				<p>
-					<label>Upload flights: </label>
-					<input type="file" accept="application/json" />
-				</p>
 			</div>
 		);
 	}
