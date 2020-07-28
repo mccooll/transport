@@ -20,6 +20,11 @@ export default class App extends Component {
 		this.currentUrl = e.url;
 	};
 
+	state = {
+		orders: [],
+		flights: []
+	}
+
 	render() {
 		return (
 			<div id="app">
@@ -28,7 +33,7 @@ export default class App extends Component {
 					<Router onChange={this.handleRoute}>
 						<Itineraries path="/" />
 						<Flights path="/flights" />
-						<Orders path="/orders" />
+						<Orders path="/orders" orders={this.state.orders} saver={(orders) => this.setState({orders: orders})} />
 					</Router>
 				</div>
 			</div>
