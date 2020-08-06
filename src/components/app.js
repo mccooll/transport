@@ -38,7 +38,7 @@ export default class App extends Component {
 				<Header />
 				<div id="content">
 					<Router onChange={this.handleRoute}>
-						<Itineraries path="/" state={this.state} />
+						<Itineraries path="/:flight?" state={this.state} />
 						<Flights path="/flights" flights={this.state.flights} />
 						<Orders path="/orders" orders={this.state.orders} saver={(orders) => this.setState({orders: orders})} />
 					</Router>

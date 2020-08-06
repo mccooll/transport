@@ -8,6 +8,8 @@ export default class Itineraries extends Component {
 
 	componentDidMount() {
 		this.itinerary();
+		console.log
+		console.log(this.props.flight)
 	}
 
 	itinerary() {
@@ -23,7 +25,7 @@ export default class Itineraries extends Component {
 			let slotted = false;
 			let flightNumber = 0;
 			do {
-				console.log(flightNumber)
+				//console.log(flightNumber)
 				let flight = flights[flightNumber];
 				
 				//check for departure && arrival
@@ -53,6 +55,8 @@ export default class Itineraries extends Component {
 			return (
 				<div>
 					<h1>Itineraries</h1>
+					<h3>Filters</h3>
+					<p>{+this.props.flight >= 0 ? 'Flight:' + this.props.flight : 'None'}</p>
 					<table>
 						<tr>
 							<th>Order</th>
@@ -61,7 +65,7 @@ export default class Itineraries extends Component {
 							<th>To</th>
 							<th>Day</th>
 						</tr>
-						{this.state.itinerary.map((slot) => (
+						{this.state.itinerary.filter(f => f.flight == this.props.flight).map((slot) => (
 							<tr>
 								<td>{slot.order}</td>
 								<td>{slot.flight}</td>

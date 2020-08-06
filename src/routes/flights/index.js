@@ -1,4 +1,5 @@
 import { h, Component } from 'preact';
+import { Link } from 'preact-router/match';
 
 export default class Flights extends Component {
 
@@ -15,7 +16,7 @@ export default class Flights extends Component {
 					</tr>
 					{this.props.flights.map((flight, i) => (
 						<tr>
-							<td>{i}</td>
+							<td><Link href={'/'+i}>{i}</Link></td>
 							<td>{flight.departure}</td>
 							<td>{flight.arrival}</td>
 							<td>{flight.day}</td>
