@@ -3,7 +3,9 @@ import { h, Component } from 'preact';
 export default class Itineraries extends Component {
 
 	state = {
-		itinerary: []
+		itinerary: [],
+		sortKey: null,
+		sortAsc: true
 	}
 
 	componentDidMount() {
@@ -50,6 +52,15 @@ export default class Itineraries extends Component {
 		this.setState({itinerary: itinerary});
 	}
 
+	sortBy(column) {
+		console.log('tapped')
+		if(this.state.sortKey===column) {
+			this.setState({sortAsc: !this.state.sortAsc})
+		} else {
+			this.setState({sortKey: column})
+		}
+	}
+
 	render() {
 		if(this.state.itinerary.length > 0) {
 			return (
@@ -59,13 +70,30 @@ export default class Itineraries extends Component {
 					<p>{+this.props.flight >= 0 ? 'Flight:' + this.props.flight : 'None'}</p>
 					<table>
 						<tr>
-							<th>Order</th>
-							<th>Flight Number</th>
-							<th>From</th>
-							<th>To</th>
-							<th>Day</th>
+							<th onclick={() => this.sortBy("order")}>Order</th>
+							<th onclick={() => this.sortBy("flight")}>Flight Number</th>
+							<th onclick={() => this.sortBy("departure")}>From</th>
+							<th onclick={() => this.sortBy("arrival")}>To</th>
+							<th onclick={() => this.sortBy("day")}>Day</th>
 						</tr>
-						{this.state.itinerary.filter(f => f.flight == this.props.flight).map((slot) => (
+						{this.state.itinerary
+							.filter(f => {
+								if(this.props.flight) return f.flight == this.props.flight;
+								return true;
+							 })
+							.sort((a,b) => {
+								if(!this.state.sortKey) return 0;
+								var first = a[this.state.sortKey];
+								console.log(first)
+								var second = b[this.state.sortKey];
+								console.log(second)
+								const multiplier = this.state.sortAsc ? 1 : -1;
+								if(first > second) { console.log(-1); return -1*multiplier;}
+								if(first < second) {console.log(1); return 1*multiplier;}
+								console.log(0)
+								return 0;
+							})
+							.map((slot) => (
 							<tr>
 								<td>{slot.order}</td>
 								<td>{slot.flight}</td>
